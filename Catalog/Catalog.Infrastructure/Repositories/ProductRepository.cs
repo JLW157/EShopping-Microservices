@@ -19,12 +19,10 @@ public class ProductRepository : IProductRepository
             .Products
             .Find(product => true).ToListAsync();
 
-    public async Task<Product> GetProduct(string id)
-    {
-        return await _context.Products
+    public async Task<Product> GetProduct(string id) =>
+        await _context.Products
             .Find(product => product.Id == id)
             .FirstOrDefaultAsync();
-    }
 
     public async Task<IEnumerable<Product>> GetProductsByName(string name)
     {
@@ -35,8 +33,8 @@ public class ProductRepository : IProductRepository
             .Find(filter)
             .ToListAsync();
     }
-    
-    
+
+
     public async Task<IEnumerable<Product>> GetProductsByBrand(string brandName)
     {
         FilterDefinition<Product> filter = Builders<Product>.Filter
