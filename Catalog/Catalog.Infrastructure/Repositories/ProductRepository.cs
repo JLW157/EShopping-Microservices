@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Catalog.Infrastructure.Repositories;
 
-public class ProductRepository : IProductRepository
+public class ProductRepository : IProductRepository, IBrandRepository, ITypesRepository
 {
     private readonly ICatalogContext _context;
 
@@ -33,7 +33,6 @@ public class ProductRepository : IProductRepository
             .Find(filter)
             .ToListAsync();
     }
-
 
     public async Task<IEnumerable<Product>> GetProductsByBrand(string brandName)
     {
